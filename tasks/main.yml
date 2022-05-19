@@ -1,0 +1,12 @@
+---
+- name: Configure JUNOS Static Routes
+  junos_config:
+    lines: "{{ lookup('template', 'junos_static_routes_config.j2').split('\n') }}"
+    comment: Configure static routes
+  when: static_remove == False
+
+- name: Remove JUNOS Static Routes
+  junos_config:
+    lines: "{{ lookup('template', 'junos_static_routes_remove.j2').split('\n') }}"
+    comment: Remove static routes 
+  when: static_remove == False

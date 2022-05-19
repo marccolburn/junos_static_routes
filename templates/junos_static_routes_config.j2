@@ -1,0 +1,5 @@
+{% if static_routes is defined %}
+{% for route in static_routes %}
+set routing-options static route {{ route.route }} next-hop {{ route.next_hop }}
+{% endfor %}
+{% endif %}

@@ -9,4 +9,4 @@
   junos_config:
     lines: "{{ lookup('template', 'junos_static_routes_remove.j2').split('\n') }}"
     comment: Remove static routes 
-  when: static_remove == False
+  when: static_remove == True

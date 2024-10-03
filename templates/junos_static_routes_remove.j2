@@ -1,9 +1,19 @@
 {% if static_routes is defined %}
 {% for route in static_routes %}
 {% if route.vr is defined %}
+{% if route.next_hop is defined %}
 delete routing-instances {{ route.vr }} routing-options static route {{ route.route }} next-hop {{ route.next_hop }}
+{% endif %}
+{% if route.reject is defined %}
+delete routing-instances {{ route.vr }} routing-options static route {{ route.route }} reject
+{% endif %}
 {% else %}
+{% if route.next_hop is defined %}
 delete routing-options static route {{ route.route }} next-hop {{ route.next_hop }}
+{% endif %}
+{% if route.reject is defined %}
+delete routing-options static route {{ route.route }} reject
+{% endif %}
 {% endif %}
 {% endfor %}
 {% endif %}
